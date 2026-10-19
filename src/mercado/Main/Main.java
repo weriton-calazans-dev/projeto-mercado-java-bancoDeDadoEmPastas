@@ -1,5 +1,6 @@
 package mercado.Main;
 
+import mercado.controller.GerenciadorController;
 import mercado.view.LeituraScanner;
 import mercado.view.Menus;
 
@@ -12,18 +13,11 @@ public class Main {
 
         Locale.setDefault(Locale.US);
 
+        Menus menus = new Menus();
+        GerenciadorController gerenciadorController = new GerenciadorController();
+        System.out.println(menus.primeiroMenu());
+        gerenciadorController.opcao1Usuario();
 
-        Menus menu = new Menus();
-        LeituraScanner leituraScanner = new LeituraScanner();
-        System.out.println(menu.primeiroMenu());
-        try {
-
-            int palavra =leituraScanner.leituraNumero();
-            System.out.println(palavra);
-
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
-        }
 
 
 

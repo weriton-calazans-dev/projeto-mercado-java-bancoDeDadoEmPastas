@@ -4,10 +4,14 @@ import java.util.Scanner;
 
 public class LeituraScanner {
 
-    Scanner input = new Scanner(System.in);
+    private Scanner input;
+
+    public LeituraScanner(){
+        this.input = new Scanner(System.in);
+    }
 
     public int leituraNumero (){
-            return input.nextInt();
+        return input.nextInt();
     }
 
     public String leituraPalavra (){

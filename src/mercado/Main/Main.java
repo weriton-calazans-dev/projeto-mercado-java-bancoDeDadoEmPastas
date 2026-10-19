@@ -13,9 +13,9 @@ public class Main {
         Locale.setDefault(Locale.US);
 
 
-        Menus menuPrincipal = new Menus();
+        Menus menu = new Menus();
         LeituraScanner leituraScanner = new LeituraScanner();
-        System.out.println(menuPrincipal.primeiroMenu());
+        System.out.println(menu.primeiroMenu());
         try {
 
             int palavra =leituraScanner.leituraNumero();

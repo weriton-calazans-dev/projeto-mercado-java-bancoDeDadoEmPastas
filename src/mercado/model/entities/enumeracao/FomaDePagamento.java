@@ -2,8 +2,9 @@ package mercado.model.entities.enumeracao;
 
 public enum FomaDePagamento {
     PIX(1," Pix "),
-    CARTAO(2," Cartão "),
-    DINHEIRO(3," Dinheiro ");
+    CARTAO_CREDITO(2," Cartão Credito "),
+    CARTAO_DEBITO(3," Cartão Debito "),
+    DINHEIRO(4," Dinheiro ");
 
     private final int codigo;
     private final String descricao;

@@ -3,17 +3,38 @@ package mercado.model.entities;
 import java.util.Objects;
 
 public class Proprietario {
+
     private String nomeProprietario;
     private Integer cpf;
     private Integer senha;
+    private String enderecoDaLoja;
+    private String nomeDaLoja;
 
     public Proprietario() {
     }
 
-    public Proprietario(Integer cpf, String nomeProprietario, Integer senha) {
+    public Proprietario(Integer cpf, String enderecoDaLoja, String nomeDaLoja, String nomeProprietario, Integer senha) {
         this.cpf = cpf;
+        this.enderecoDaLoja = enderecoDaLoja;
+        this.nomeDaLoja = nomeDaLoja;
         this.nomeProprietario = nomeProprietario;
         this.senha = senha;
+    }
+
+    public String getEnderecoDaLoja() {
+        return enderecoDaLoja;
+    }
+
+    public void setEnderecoDaLoja(String enderecoDaLoja) {
+        this.enderecoDaLoja = enderecoDaLoja;
+    }
+
+    public String getNomeDaLoja() {
+        return nomeDaLoja;
+    }
+
+    public void setNomeDaLoja(String nomeDaLoja) {
+        this.nomeDaLoja = nomeDaLoja;
     }
 
     public Integer getCpf() {
@@ -40,17 +61,22 @@ public class Proprietario {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Proprietario that = (Proprietario) o;
-        return Objects.equals(getNomeProprietario(), that.getNomeProprietario()) && Objects.equals(getCpf(), that.getCpf()) && Objects.equals(getSenha(), that.getSenha());
+        return Objects.equals(getNomeProprietario(), that.getNomeProprietario()) && Objects.equals(getCpf(), that.getCpf()) && Objects.equals(getSenha(), that.getSenha()) && Objects.equals(getEnderecoDaLoja(), that.getEnderecoDaLoja()) && Objects.equals(getNomeDaLoja(), that.getNomeDaLoja());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNomeProprietario(), getCpf(), getSenha());
+        return Objects.hash(getNomeProprietario(), getCpf(), getSenha(), getEnderecoDaLoja(), getNomeDaLoja());
     }
 
     @Override
     public String toString() {
-        return "Proprietário: " + '\n' +
-                "CPF: " + cpf ;
+        return "Proprietario{" +
+                "cpf=" + cpf +
+                ", nomeProprietario='" + nomeProprietario + '\'' +
+                ", senha=" + senha +
+                ", enderecoDaLoja='" + enderecoDaLoja + '\'' +
+                ", nomeDaLoja='" + nomeDaLoja + '\'' +
+                '}';
     }
 }

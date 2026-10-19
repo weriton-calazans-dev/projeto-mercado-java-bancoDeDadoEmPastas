@@ -1,59 +1,63 @@
 package mercado.model.entities;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
+import static mercado.util.FormataData.formatarData;
+
 public class EntradaDeMercadoria {
-    private String nomeProdutoEntrada;
-    private Integer codigoDeBarraEntrada;
+    private Produto produto;
     private Integer quantidadePacotesEntrada;
+    private LocalDate dataValidade;
+    private BigDecimal precoDaCompra;
 
-    public EntradaDeMercadoria(Integer codigoDeBarraEntrada, String nomeProdutoEntrada, Integer quantidadePacotesEntrada) {
-        this.codigoDeBarraEntrada = codigoDeBarraEntrada;
-        this.nomeProdutoEntrada = nomeProdutoEntrada;
+
+    public EntradaDeMercadoria(String dataValidade,Produto produto, Integer quantidadePacotesEntrada,BigDecimal precoDaCompra) {
+        this.dataValidade = LocalDate.parse(dataValidade,formatarData);
+        this.produto = produto;
         this.quantidadePacotesEntrada = quantidadePacotesEntrada;
+        this.precoDaCompra = precoDaCompra;
     }
 
-    public Integer getCodigoDeBarraEntrada() {
-        return codigoDeBarraEntrada;
+    public BigDecimal getPrecoDaCompra() {
+        return precoDaCompra;
     }
 
-    public void setCodigoDeBarraEntrada(Integer codigoDeBarraEntrada) {
-        this.codigoDeBarraEntrada = codigoDeBarraEntrada;
+    public LocalDate getDataValidade() {
+        return dataValidade;
     }
 
-    public String getNomeProdutoEntrada() {
-        return nomeProdutoEntrada;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setNomeProdutoEntrada(String nomeProdutoEntrada) {
-        this.nomeProdutoEntrada = nomeProdutoEntrada;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Integer getQuantidadePacotesEntrada() {
         return quantidadePacotesEntrada;
     }
 
-    public void setQuantidadePacotesEntrada(Integer quantidadePacotesEntrada) {
-        this.quantidadePacotesEntrada = quantidadePacotesEntrada;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         EntradaDeMercadoria that = (EntradaDeMercadoria) o;
-        return Objects.equals(getNomeProdutoEntrada(), that.getNomeProdutoEntrada()) && Objects.equals(getCodigoDeBarraEntrada(), that.getCodigoDeBarraEntrada()) && Objects.equals(getQuantidadePacotesEntrada(), that.getQuantidadePacotesEntrada());
+        return Objects.equals(getProduto(), that.getProduto()) && Objects.equals(getDataValidade(), that.getDataValidade()) && Objects.equals(getPrecoDaCompra(), that.getPrecoDaCompra());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNomeProdutoEntrada(), getCodigoDeBarraEntrada(), getQuantidadePacotesEntrada());
+        return Objects.hash(getProduto(), getDataValidade(), getPrecoDaCompra());
     }
 
     @Override
     public String toString() {
-        return "    Entrada De Mercadoria     " + '\n' +
-                "Código De Barra Entrada: " + codigoDeBarraEntrada + '\n' +
-                "Nome Produto Entrada: " + nomeProdutoEntrada + '\n' +
-                "Quantidade Pacotes Entrada: " + quantidadePacotesEntrada ;
+        return "EntradaDeMercadoria{" +
+                "dataValidade=" + dataValidade.format(formatarData) +
+                ", produto=" + produto +
+                ", quantidadePacotesEntrada=" + quantidadePacotesEntrada +
+                '}';
     }
 }

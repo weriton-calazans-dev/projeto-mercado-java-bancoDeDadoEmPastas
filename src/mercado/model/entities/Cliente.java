@@ -3,23 +3,30 @@ package mercado.model.entities;
 import java.util.Objects;
 
 public class Cliente {
+
     private String nomeCliente;
-    private Integer codigoCliente;
+    private Integer numeroCelular;
+    private Integer cpf;
 
     public Cliente() {
     }
 
-    public Cliente(Integer codigoCliente, String nomeCliente) {
-        this.codigoCliente = codigoCliente;
+    public Cliente(Integer cpf, String nomeCliente,Integer numeroCelular) {
+        this.cpf = cpf;
         this.nomeCliente = nomeCliente;
+        this.numeroCelular = numeroCelular;
     }
 
-    public Integer getCodigoCliente() {
-        return codigoCliente;
+    public Integer getNumeroCelular() {
+        return numeroCelular;
     }
 
-    public void setCodigoCliente(Integer codigoCliente) {
-        this.codigoCliente = codigoCliente;
+    public void setNumeroCelular(Integer numeroCelular) {
+        this.numeroCelular = numeroCelular;
+    }
+
+    public Integer cpf() {
+        return cpf;
     }
 
     public String getNomeCliente() {
@@ -34,17 +41,17 @@ public class Cliente {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
-        return Objects.equals(getNomeCliente(), cliente.getNomeCliente()) && Objects.equals(getCodigoCliente(), cliente.getCodigoCliente());
+        return Objects.equals(getNomeCliente(), cliente.getNomeCliente()) && Objects.equals(cpf(), cliente.cpf());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNomeCliente(), getCodigoCliente());
+        return Objects.hash(getNomeCliente(), cpf());
     }
 
     @Override
     public String toString() {
         return "Cliente: " + nomeCliente + '\n' +
-                "Código Cliente: " + codigoCliente ;
+                "Número do Celular: " + numeroCelular ;
     }
 }

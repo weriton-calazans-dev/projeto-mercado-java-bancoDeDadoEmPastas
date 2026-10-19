@@ -3,6 +3,7 @@ package mercado.model.entities;
 import java.util.Objects;
 
 public class Vendas {
+
     private Produto produto;
     private Integer quantidade;
 

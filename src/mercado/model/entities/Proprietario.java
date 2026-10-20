@@ -71,12 +71,19 @@ public class Proprietario {
 
     @Override
     public String toString() {
-        return "Proprietario{" +
-                "cpf=" + cpf +
-                ", nomeProprietario='" + nomeProprietario + '\'' +
-                ", senha=" + senha +
-                ", enderecoDaLoja='" + enderecoDaLoja + '\'' +
-                ", nomeDaLoja='" + nomeDaLoja + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Proprietário-> ");
+        sb.append(getNomeProprietario()).append('\n');
+        sb.append("Cpf-> ");
+        sb.append(getCpf()).append('\n');
+        sb.append("Senha-> ");
+        sb.append(getSenha()).append('\n');
+        sb.append("Endereço da loja-> ");
+        sb.append(getEnderecoDaLoja()).append('\n');
+        sb.append("Nome da loja-> ");
+        sb.append(getNomeDaLoja()).append('\n');
+
+        return sb.toString();
+
     }
 }

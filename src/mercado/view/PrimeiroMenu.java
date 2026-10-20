@@ -2,13 +2,13 @@ package mercado.view;
 
 import mercado.controller.ProprietarioController;
 
-public class Menus {
+public class PrimeiroMenu {
 
     private LeituraScanner leituraScanner;
     private MenuProprietario menuProprietario;
     private ProprietarioController proprietarioController;
 
-    public Menus(){
+    public PrimeiroMenu(){
        this.leituraScanner = new LeituraScanner();
        this.menuProprietario = new MenuProprietario();
        this.proprietarioController = new ProprietarioController();
@@ -16,12 +16,12 @@ public class Menus {
 
     public String primeiroMenu(){
         return  """
-                   ---------Bem Vindo-----------
-                   --------Mercado Java---------
+                   ---------------Bem Vindo----------------
+                   -------------Mercado Java---------------
                    1-> Proprietário 
                    2-> Cliente
-                   ----Digite o Número Correspondent---
-                   --------------(1 ou 2)--------------\s 
+                   -------Digite o Número Correspondent----
+                   ----------------(1 ou 2)----------------\s 
                    """;
     }
 
@@ -42,14 +42,8 @@ public class Menus {
 
         }
 
+        leituraScanner.fecharScaner();
     }
 
-   /* public String opcao2Usuario(String  opcao2Usuario){
-        if(opcao2Usuario.equals("1")){
-            proprietarioController.cadastraProprietario();
-            return null;
-        }
-        return null;
-    }*/
 
 }

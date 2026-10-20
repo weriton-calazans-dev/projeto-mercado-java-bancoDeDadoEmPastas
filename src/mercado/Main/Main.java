@@ -1,6 +1,6 @@
 package mercado.Main;
 
-import mercado.view.Menus;
+import mercado.view.PrimeiroMenu;
 import java.util.Locale;
 
 public class Main {
@@ -8,11 +8,11 @@ public class Main {
 
         Locale.setDefault(Locale.US);
 
-        Menus menus = new Menus();
+        PrimeiroMenu primeiroMenu = new PrimeiroMenu();
 
-        System.out.println(menus.primeiroMenu());
+        System.out.println(primeiroMenu.primeiroMenu());
 
-        menus.opcaoPrimeiroMenu();
+        primeiroMenu.opcaoPrimeiroMenu();
 
     }
 }

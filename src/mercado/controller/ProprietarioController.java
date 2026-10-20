@@ -12,16 +12,20 @@ public class ProprietarioController {
        this.proprietarioDAO = new ProprietarioDAO();
    }
 
-   public Boolean cadastraProprietario(Integer cpf,String enderecoDaLoja,String nomeDaLoja,String nome,Integer senha){
+   public Proprietario cadastraProprietario(String cpf,String enderecoDaLoja,String nomeDaLoja,String nome,Integer senha){
+
        try {
 
-           Proprietario proprietario = new Proprietario(cpf,enderecoDaLoja,nomeDaLoja,nome,senha);
+           Proprietario proprietario = new Proprietario(Integer.parseInt(cpf),enderecoDaLoja,nomeDaLoja,nome,senha);
+
            proprietarioDAO.cadastraProprietario(proprietario);
-           return true;
+
+           return proprietario;
+
 
        } catch (Exception e) {
 
-           return false;
+           throw new RuntimeException("Falha ao salvar o proprietário no banco de dados. "+ e.getStackTrace());
 
        }
 

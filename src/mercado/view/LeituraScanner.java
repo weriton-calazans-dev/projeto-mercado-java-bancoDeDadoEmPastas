@@ -15,9 +15,9 @@ public  class LeituraScanner {
         return escolhaUsuario;
     }
 
-    public Integer leituraCpf (){
+    public String leituraCpf (){
         System.out.println("Digite o seu Cpf ( Ex: 123456789-00 ) ");
-        Integer numeroCpf = input.nextInt();
+        String numeroCpf = input.nextLine();
         return numeroCpf;
     }
     public String leituraNome (){
@@ -25,9 +25,9 @@ public  class LeituraScanner {
         String nomePessoa = input.nextLine();
         return nomePessoa;
     }
-    public Integer numeroCelular(){
+    public String numeroCelular(){
         System.out.println("Digite o número do celular: ");
-        Integer numeroCelular = input.nextInt();
+        String numeroCelular = input.nextLine();
         return numeroCelular;
     }
     public String nomeProduto(){
@@ -38,6 +38,7 @@ public  class LeituraScanner {
     public Integer codigoDeBarra(){
         System.out.println("Digite o número do código de barra: ");
         Integer codigoDeBarra = input.nextInt();
+        input.nextLine();
         return codigoDeBarra;
     }
     public BigDecimal precoDeVenda(){
@@ -59,12 +60,12 @@ public  class LeituraScanner {
     public Integer senha(){
         System.out.println("Digite sua senha: ");
         Integer senha = input.nextInt();
+        input.nextLine();
         return senha;
     }
     public String enderecoDaLoja(){
         System.out.println("Digite o endereço da loja: ");
-        System.out.println("ex: rua: -------;número: --;bairro: -----;cidade: ------");
-        input.nextLine();
+        System.out.println("ex: rua: -------,número: --,bairro: -----,cidade: ------");
         String enderecoDaLoja = input.nextLine();
         return enderecoDaLoja;
     }
@@ -76,8 +77,10 @@ public  class LeituraScanner {
     public Integer quantidadeDePacote(){
         System.out.println("Digite a quantidade de pacote: ");
         Integer quantidadeDePacote = input.nextInt();
+        input.nextLine();
         return quantidadeDePacote;
     }
+
     public void fecharScaner (){
         input.close();
     }

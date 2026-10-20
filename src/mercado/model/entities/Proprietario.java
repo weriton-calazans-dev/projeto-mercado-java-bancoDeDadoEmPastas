@@ -5,15 +5,15 @@ import java.util.Objects;
 public class Proprietario {
 
     private String nomeProprietario;
-    private Integer cpf;
-    private Integer senha;
+    private String cpf;
+    private String senha;
     private String enderecoDaLoja;
     private String nomeDaLoja;
 
     public Proprietario() {
     }
 
-    public Proprietario(Integer cpf, String enderecoDaLoja, String nomeDaLoja, String nomeProprietario, Integer senha) {
+    public Proprietario(String cpf, String enderecoDaLoja, String nomeDaLoja, String nomeProprietario, String senha) {
         this.cpf = cpf;
         this.enderecoDaLoja = enderecoDaLoja;
         this.nomeDaLoja = nomeDaLoja;
@@ -37,7 +37,7 @@ public class Proprietario {
         this.nomeDaLoja = nomeDaLoja;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -49,11 +49,11 @@ public class Proprietario {
         this.nomeProprietario = nomeProprietario;
     }
 
-    public Integer getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(Integer senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 

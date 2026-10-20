@@ -79,22 +79,49 @@ public  class LeituraScanner {
         BigDecimal precoDaCompra = input.nextBigDecimal();
         return precoDaCompra;
     }
-    //este método deve ser analisado posteriormente para aceita uma senha forte com letras e numero.
-    public Integer senha(){
-        System.out.println("Digite sua senha: ");
-        Integer senha = input.nextInt();
-        input.nextLine();
+
+    public String senha(){
+        String senha;
+
+        do {
+            System.out.println("Digite sua senha de no mínimo 6 digito: ");
+            senha = input.nextLine();
+            validar = ValidacaoUtil.validarSenha(senha);
+            if (!validar){
+                System.out.println("Senha invalida! ");
+            }
+        } while (validar == false);
+
         return senha;
     }
     public String enderecoDaLoja(){
-        System.out.println("Digite o endereço da loja: ");
-        System.out.println("ex: rua: -------,número: --,bairro: -----,cidade: ------");
-        String enderecoDaLoja = input.nextLine();
+        String enderecoDaLoja;
+
+        do {
+            System.out.println("Digite o endereço da loja: ");
+            System.out.println("ex: rua: -------,número: --,bairro: -----,cidade: ------");
+            enderecoDaLoja = input.nextLine();
+            validar = ValidacaoUtil.valiarEnderecoDaLoja(enderecoDaLoja);
+            if (!validar){
+                System.out.println("Endereço invalido digite com forme o exemplo a cima! ");
+            }
+        } while (validar == false);
+
         return enderecoDaLoja;
     }
     public String nomeDaLoja(){
-        System.out.println("Digite o nome da loja: ");
-        String nomeDaLoja = input.nextLine();
+        String nomeDaLoja;
+
+        do {
+            System.out.println("Digite o nome da loja: ");
+            nomeDaLoja = input.nextLine();
+            validar = ValidacaoUtil.validarNome(nomeDaLoja);
+            if(!validar){
+                System.out.println("Nome invalido digite apenas letras! ");
+            }
+
+        } while (validar == false);
+
         return nomeDaLoja;
     }
     public Integer quantidadeDePacote(){

@@ -30,7 +30,7 @@ public class MenuProprietario {
             System.out.println();
             String nome = leituraScanner.leituraNome();
             String cpf = leituraScanner.leituraCpf();
-            Integer senha = leituraScanner.senha();
+            String senha = leituraScanner.senha();
             String enderecoDaLoja = leituraScanner.enderecoDaLoja();
             String nomeDaLoja = leituraScanner.nomeDaLoja();
 

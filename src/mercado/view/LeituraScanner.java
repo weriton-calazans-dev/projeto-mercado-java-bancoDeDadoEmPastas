@@ -8,23 +8,34 @@ import java.util.Scanner;
 public  class LeituraScanner {
 
     private Scanner input;
+    private Boolean validar;
 
     public LeituraScanner(){
         this.input = new Scanner(System.in);
     }
+
     public String escolhaUsuario(){
         String escolhaUsuario = input.nextLine();
         return escolhaUsuario;
     }
 
     public String leituraCpf (){
-        System.out.println("Digite o seu Cpf ( Ex: 123456789-00 ) ");
-        String numeroCpf = input.nextLine();
+        String numeroCpf;
+
+        do{
+            System.out.println("Digite o seu Cpf ( Ex: 123456789-00 ) ");
+            numeroCpf = input.nextLine();
+            validar = ValidacaoUtil.validarCpf(numeroCpf);
+            if(!validar){
+                System.out.println("Número do CPF invalido! ");
+            }
+        } while (validar == false);
+
         return numeroCpf;
     }
     public String leituraNome () {
-        Boolean validar;
         String nomePessoa;
+
         do {
             System.out.println("Digite seu Nome: ");
             nomePessoa = input.nextLine();

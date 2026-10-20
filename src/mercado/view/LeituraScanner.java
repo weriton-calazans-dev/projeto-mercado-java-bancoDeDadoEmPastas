@@ -1,5 +1,7 @@
 package mercado.view;
 
+import mercado.util.ValidacaoUtil;
+
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -20,9 +22,19 @@ public  class LeituraScanner {
         String numeroCpf = input.nextLine();
         return numeroCpf;
     }
-    public String leituraNome (){
-        System.out.println("Digite seu Nome: ");
-        String nomePessoa = input.nextLine();
+    public String leituraNome () {
+        Boolean validar;
+        String nomePessoa;
+        do {
+            System.out.println("Digite seu Nome: ");
+            nomePessoa = input.nextLine();
+            validar = ValidacaoUtil.validarNome(nomePessoa);
+            if(!validar){
+                System.out.println("Nome invalido digite apenas letras! ");
+            }
+
+        } while (validar == false);
+
         return nomePessoa;
     }
     public String numeroCelular(){

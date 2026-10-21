@@ -1,17 +1,14 @@
 package mercado.view;
 
-import mercado.controller.ProprietarioController;
 
-public class PrimeiroMenu {
 
-    private LeituraScanner leituraScanner;
-    private MenuProprietario menuProprietario;
-    private ProprietarioController proprietarioController;
+public class PrimeiroMenu implements InterLeituraScanner {
 
-    public PrimeiroMenu(){
-       this.leituraScanner = new LeituraScanner();
-       this.menuProprietario = new MenuProprietario();
-       this.proprietarioController = new ProprietarioController();
+    private InterMeuProprietario interMeuProprietario;
+
+
+    public PrimeiroMenu(InterMeuProprietario interMeuProprietario){
+        this.interMeuProprietario = interMeuProprietario;
     }
 
     public String primeiroMenu(){
@@ -27,13 +24,13 @@ public class PrimeiroMenu {
 
     public void opcaoPrimeiroMenu(){
 
-        String opcaoUsuario = leituraScanner.escolhaUsuario();
+        String opcaoUsuario = escolhaUsuario();
 
         if(opcaoUsuario.equals("1")){
-            menuProprietario.proprietarioMenu();
-            String opcao = leituraScanner.escolhaUsuario();
+            interMeuProprietario.proprietarioMenu();
+            String opcao = escolhaUsuario();
             if(opcao.equals("1")){
-                menuProprietario.executarCadastro();
+               interMeuProprietario.cadastraProprietario();
             }
 
         }
@@ -42,7 +39,7 @@ public class PrimeiroMenu {
 
         }
 
-        leituraScanner.fecharScaner();
+        fecharScaner();
     }
 
 

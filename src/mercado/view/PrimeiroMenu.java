@@ -1,13 +1,13 @@
 package mercado.view;
 
-
-
 public class PrimeiroMenu implements InterLeituraScanner {
 
-    private InterMeuProprietario interMeuProprietario;
+    private InterMenuProprietario interMeuProprietario;
 
+    public PrimeiroMenu(){
+    }
 
-    public PrimeiroMenu(InterMeuProprietario interMeuProprietario){
+    public PrimeiroMenu(InterMenuProprietario interMeuProprietario){
         this.interMeuProprietario = interMeuProprietario;
     }
 

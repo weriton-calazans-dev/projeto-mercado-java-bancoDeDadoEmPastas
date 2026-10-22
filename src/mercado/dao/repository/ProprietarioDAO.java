@@ -9,8 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
-public class ProprietarioDAO {
+public class ProprietarioDAO implements InterProprietarioDAO {
 
+    @Override
     public void cadastraProprietario(Proprietario proprietario){
 
         //caminho do diretorio/pasta e arquivo.csv
@@ -114,7 +115,12 @@ public class ProprietarioDAO {
 
         } //agrupando exceção do java com a exceção personalizada
         catch (DominiDeExceptions | IOException e) {
-            throw new RuntimeException("Erro ao cadastra o proprietário no sistema"+ e.getMessage() + e.getStackTrace());
+            throw new RuntimeException("Erro ao cadastra o proprietário no sistema");
         }
+    }
+
+    @Override
+    public void acessarMercado() {
+
     }
 }

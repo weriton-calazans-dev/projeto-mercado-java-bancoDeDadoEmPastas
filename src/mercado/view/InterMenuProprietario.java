@@ -1,6 +1,6 @@
 package mercado.view;
 
-public interface InterMeuProprietario {
+public interface InterMenuProprietario {
     public void proprietarioMenu();
     public void cadastraProprietario();
 }

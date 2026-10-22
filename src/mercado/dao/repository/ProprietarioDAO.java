@@ -2,6 +2,8 @@ package mercado.dao.repository;
 
 import mercado.exceptions.DominiDeExceptions;
 import mercado.model.entities.Proprietario;
+import mercado.util.CaminhosDados;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -14,20 +16,18 @@ public class ProprietarioDAO implements InterProprietarioDAO {
     @Override
     public void cadastraProprietario(Proprietario proprietario){
 
-        //caminho do diretorio/pasta e arquivo.csv
-        Path caminho = Path.of("dados","Proprietario.csv");
-        Path caminhoDoProprietario = Path.of("dados",proprietario.getNomeProprietario());
-
+        //caminho do diretorio/pasta
+        Path caminhoDoProprietario = CaminhosDados.caminho.resolve(proprietario.getNomeProprietario());
 
         try {
             //pagando apenas a pasta pai
            // Path pasta = caminho.getParent();
 
             //verificando se o caminho não existe e a pasta pai não existe
-            if (caminho != null && Files.notExists(caminhoDoProprietario)){
-
+            //a variável ArquivoCadasreoProprietariosCSV e o caminho da pasta util
+            if (CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv) != null && Files.notExists(caminhoDoProprietario)){
                 //criando a pasta pai se as condições do if for verdadeira
-                Files.createDirectories(caminho.getParent());
+                Files.createDirectories(CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv).getParent());
             }
             boolean arquivoProprietarioExiste = Files.exists(caminhoDoProprietario);
 
@@ -35,9 +35,9 @@ public class ProprietarioDAO implements InterProprietarioDAO {
             if(Files.notExists(caminhoDoProprietario)){
                 //criando a pasta com o nome do proprietario e os arquivos dentro da pasta do proprietario
                 Files.createDirectories(caminhoDoProprietario);
-                Files.createFile(caminhoDoProprietario.resolve("Cliente.csv"));
-                Files.createFile(caminhoDoProprietario.resolve("Produto.csv"));
-                Files.createFile(caminhoDoProprietario.resolve("Vendas.csv"));
+                Files.createFile(caminhoDoProprietario.resolve(CaminhosDados.arquivoClienteCsv));
+                Files.createFile(caminhoDoProprietario.resolve(CaminhosDados.arquivoProduto));
+                Files.createFile(caminhoDoProprietario.resolve(CaminhosDados.arquivoVendasCsv));
             }
 
             //escrevendo a primeira linha do arquivo cliente dentro da pasta do proprietario
@@ -81,11 +81,11 @@ public class ProprietarioDAO implements InterProprietarioDAO {
 
 
             //verificando se o arquivo.csv já foi criado
-            boolean arquivoExiste = Files.exists(caminho);
+            boolean arquivoExiste = Files.exists(CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv));
 
             //abrindo a configuração para escrever no arquivo.csv
             try (BufferedWriter escrever = Files.newBufferedWriter(
-                                                                    caminho,//mostrando o caminho para o arquivo.csv
+                                                                    CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv),//mostrando o caminho para o arquivo.csv
                                                                     StandardCharsets.UTF_8,//habilitando os caracteres especiais
                                                                     StandardOpenOption.CREATE,//criando o arquivo.csv se não existir
                                                                     StandardOpenOption.APPEND)){//escrevendo no final da linha do arquivo

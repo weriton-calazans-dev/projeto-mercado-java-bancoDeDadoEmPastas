@@ -42,7 +42,7 @@ public class ProprietarioDAO implements InterProprietarioDAO {
 
             //escrevendo a primeira linha do arquivo cliente dentro da pasta do proprietario
             try (BufferedWriter escrever = Files.newBufferedWriter(
-                                                                    caminhoDoProprietario.resolve("Cliente.csv"),
+                                                                    caminhoDoProprietario.resolve(CaminhosDados.arquivoClienteCsv),
                                                                     StandardCharsets.UTF_8,
                                                                     StandardOpenOption.APPEND)){
                 if (!arquivoProprietarioExiste) {
@@ -55,7 +55,7 @@ public class ProprietarioDAO implements InterProprietarioDAO {
 
             //escrevendo a primeira linha do arquivo produto dentro da pasta do proprietario
             try (BufferedWriter escrever = Files.newBufferedWriter(
-                                                                    caminhoDoProprietario.resolve("Produto.csv"),
+                                                                    caminhoDoProprietario.resolve(CaminhosDados.arquivoProduto),
                                                                     StandardCharsets.UTF_8,
                                                                     StandardOpenOption.APPEND)){
                 if (!arquivoProprietarioExiste) {
@@ -68,7 +68,7 @@ public class ProprietarioDAO implements InterProprietarioDAO {
 
             //escrevendo a primeira linha do arquivo vendas dentro da pasta do proprietario
             try (BufferedWriter escrever = Files.newBufferedWriter(
-                                                                    caminhoDoProprietario.resolve("Vendas.csv"),
+                                                                    caminhoDoProprietario.resolve(CaminhosDados.arquivoVendasCsv),
                                                                     StandardCharsets.UTF_8,
                                                                     StandardOpenOption.APPEND)){
                 if (!arquivoProprietarioExiste) {

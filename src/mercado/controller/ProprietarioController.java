@@ -1,5 +1,6 @@
 package mercado.controller;
 
+import mercado.dao.repository.InterGerenciadorDeDadosDAO;
 import mercado.dao.repository.InterProprietarioDAO;
 import mercado.model.entities.Proprietario;
 
@@ -19,7 +20,7 @@ public class ProprietarioController implements InterProprietarioController{
            Proprietario proprietario = new Proprietario(cpf,enderecoDaLoja,nomeDaLoja,nome,senha);
            interProprietarioDAO.cadastraProprietario(proprietario);
        } catch (RuntimeException e) {
-           throw new RuntimeException("Erro! Ao cadastra novo usuário. ");
+           throw new RuntimeException(e.getMessage());
        }
    }
 

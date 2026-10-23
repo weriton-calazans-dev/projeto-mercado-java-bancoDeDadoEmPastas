@@ -13,10 +13,48 @@ import java.nio.file.StandardOpenOption;
 
 public class ProprietarioDAO implements InterProprietarioDAO {
 
+    private InterGerenciadorDeDadosDAO gerenciadorDeDadosDAO;
+
+    public ProprietarioDAO(InterGerenciadorDeDadosDAO gerenciadorDeDadosDAO){
+        this.gerenciadorDeDadosDAO = gerenciadorDeDadosDAO;
+    }
+
     @Override
     public void cadastraProprietario(Proprietario proprietario){
 
-        //caminho do diretorio/pasta
+        Path caminhoPastaProprietario = CaminhosDados.caminho.resolve(proprietario.getNomeProprietario());
+        Path caminhoArquivoProprietarios = CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv);
+       try {
+
+            if (gerenciadorDeDadosDAO.verificadorCaminhoNaoExiste(caminhoPastaProprietario) && gerenciadorDeDadosDAO.verificadorCaminhoNaoExiste(caminhoArquivoProprietarios)){
+
+                gerenciadorDeDadosDAO.criarPasta(caminhoPastaProprietario);
+                gerenciadorDeDadosDAO.criarArquivoCsv(caminhoArquivoProprietarios);
+                gerenciadorDeDadosDAO.criarArquivoCsv(caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv));
+                gerenciadorDeDadosDAO.criarArquivoCsv(caminhoPastaProprietario.resolve(CaminhosDados.arquivoVendasCsv));
+                gerenciadorDeDadosDAO.criarArquivoCsv(caminhoPastaProprietario.resolve(CaminhosDados.arquivoProduto));
+            }
+
+           gerenciadorDeDadosDAO.escritaDaPrimeiraLinha(
+                   gerenciadorDeDadosDAO.verificadorCaminhoExiste(caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv)),
+                   "Código Cliente;Nome do Cliente;Número do Celular",
+                   caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv));
+
+           String linhaProprietario = String.join(";",
+                   proprietario.getNomeProprietario(),
+                   String.valueOf(proprietario.getCpf()),
+                   proprietario.getNomeDaLoja(),
+                   proprietario.getEnderecoDaLoja(),
+                   String.valueOf(proprietario.getSenha()));
+
+           gerenciadorDeDadosDAO.escreverArquivoCsv(linhaProprietario,caminhoArquivoProprietarios);
+
+       } catch (Exception e) {
+           throw new RuntimeException(e);
+       }
+
+
+       /* //caminho do diretorio/pasta
         Path caminhoDoProprietario = CaminhosDados.caminho.resolve(proprietario.getNomeProprietario());
 
         try {
@@ -27,7 +65,7 @@ public class ProprietarioDAO implements InterProprietarioDAO {
             //a variável ArquivoCadasreoProprietariosCSV e o caminho da pasta util
             if (CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv) != null && Files.notExists(caminhoDoProprietario)){
                 //criando a pasta pai se as condições do if for verdadeira
-                Files.createDirectories(CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv).getParent());
+                Files.createDirectories(CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv));
             }
             boolean arquivoProprietarioExiste = Files.exists(caminhoDoProprietario);
 
@@ -116,7 +154,7 @@ public class ProprietarioDAO implements InterProprietarioDAO {
         } //agrupando exceção do java com a exceção personalizada
         catch (DominiDeExceptions | IOException e) {
             throw new RuntimeException("Erro ao cadastra o proprietário no sistema");
-        }
+        }*/
     }
 
     @Override

@@ -37,8 +37,7 @@ public class GerenciadorDeDadosDAO implements InterGerenciadorDeDadosDAO {
     public void escritaDaPrimeiraLinha(Boolean caminho, String primeiraLinha,Path caminhoArquivo){
         if(caminho){
             try {
-                Files.writeString(caminhoArquivo,primeiraLinha,StandardCharsets.UTF_8,StandardOpenOption.APPEND);
-                System.lineSeparator();
+                Files.writeString(caminhoArquivo,primeiraLinha,StandardCharsets.UTF_8,StandardOpenOption.APPEND,StandardOpenOption.CREATE);
             } catch (IOException e) {
                 throw new RuntimeException("Erro ao escrever a primeira linha do arquivo. ");
             }
@@ -48,8 +47,6 @@ public class GerenciadorDeDadosDAO implements InterGerenciadorDeDadosDAO {
     public Boolean escreverArquivoCsv(String linhaDaEscrita,Path caminho){
         try {
             Files.writeString(caminho,linhaDaEscrita, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE);
-            //Pulando para próxima linha do arquivo
-            System.lineSeparator();
             return true;
         } catch (IOException e) {
             throw new RuntimeException("Erro ao escrever arquivo. ");

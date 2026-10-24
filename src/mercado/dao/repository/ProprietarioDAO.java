@@ -26,21 +26,35 @@ public class ProprietarioDAO implements InterProprietarioDAO {
         Path caminhoArquivoProprietarios = CaminhosDados.caminho.resolve(CaminhosDados.arquivoCadastroProprietariosCsv);
        try {
 
-            if (gerenciadorDeDadosDAO.verificadorCaminhoNaoExiste(caminhoPastaProprietario) && gerenciadorDeDadosDAO.verificadorCaminhoNaoExiste(caminhoArquivoProprietarios)){
+            if (gerenciadorDeDadosDAO.verificadorCaminhoNaoExiste(caminhoPastaProprietario)){
 
                 gerenciadorDeDadosDAO.criarPasta(caminhoPastaProprietario);
-                gerenciadorDeDadosDAO.criarArquivoCsv(caminhoArquivoProprietarios);
                 gerenciadorDeDadosDAO.criarArquivoCsv(caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv));
                 gerenciadorDeDadosDAO.criarArquivoCsv(caminhoPastaProprietario.resolve(CaminhosDados.arquivoVendasCsv));
                 gerenciadorDeDadosDAO.criarArquivoCsv(caminhoPastaProprietario.resolve(CaminhosDados.arquivoProduto));
             }
+
+            gerenciadorDeDadosDAO.escritaDaPrimeiraLinha(
+                   gerenciadorDeDadosDAO.verificadorCaminhoNaoExiste(caminhoArquivoProprietarios),
+                   "Nome;CPF;Nome da Loja;Endereço da Loja;Senha" + System.lineSeparator(),
+                   caminhoArquivoProprietarios);
 
            gerenciadorDeDadosDAO.escritaDaPrimeiraLinha(
                    gerenciadorDeDadosDAO.verificadorCaminhoExiste(caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv)),
                    "Código Cliente;Nome do Cliente;Número do Celular",
                    caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv));
 
-           String linhaProprietario = String.join(";",
+           gerenciadorDeDadosDAO.escritaDaPrimeiraLinha(
+                   gerenciadorDeDadosDAO.verificadorCaminhoExiste(caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv)),
+                   "Código De Barra;Nome do Produto;Preço De Venda;Quantidade Vendida",
+                   caminhoPastaProprietario.resolve(CaminhosDados.arquivoVendasCsv));
+
+           gerenciadorDeDadosDAO.escritaDaPrimeiraLinha(
+                   gerenciadorDeDadosDAO.verificadorCaminhoExiste(caminhoPastaProprietario.resolve(CaminhosDados.arquivoClienteCsv)),
+                   "Data de Validade;Código De Barra;Nome do Produto;Preço De Venda;Quantidade Pacotes Entrada;Preço Da Compra",
+                   caminhoPastaProprietario.resolve(CaminhosDados.arquivoProduto));
+
+           String linhaProprietario = System.lineSeparator() + String.join(";",
                    proprietario.getNomeProprietario(),
                    String.valueOf(proprietario.getCpf()),
                    proprietario.getNomeDaLoja(),
